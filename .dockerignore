@@ -1,0 +1,10 @@
+# En dockerignore este comando ignora tambien la raiz
+dist/
+node_modules/
+.vscode/
+.env
+
+**/dist/
+**/node_modules/
+**/.vscode/
+**/.env

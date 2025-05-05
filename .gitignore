@@ -1,0 +1,8 @@
+# En gitignore este comando ignora tambien la raiz
+# .env
+# node_modules/
+# postgres
+
+# **/.env
+# **/node_modules/
+# **/postgres
