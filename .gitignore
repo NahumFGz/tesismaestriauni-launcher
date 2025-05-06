@@ -3,6 +3,8 @@
 # node_modules/
 # postgres
 
-# **/.env
-# **/node_modules/
-# **/postgres
+**/.DS_Store
+
+**/.env
+**/node_modules/
+**/postgres/

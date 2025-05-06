@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  nats-server:
+    image: nats:latest
+    ports:
+      - 8222:8222
+      - 4222:4222
+
+  ms-gateway:
+    build: ./ms-gateway
+    ports:
+      - ${GATEWAY_PORT}:3000
+    volumes:
+      - ./ms-gateway/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=3000
+      - NATS_SERVERS=nats://nats-server:4222  
+
+  ms-messages:
+    build: ./ms-messages
+    ports:
+      - ${MESSAGES_PORT}:8000
+    volumes:
+      - ./ms-messages/src:/app/src
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    environment:
+      - PORT=${MESSAGES_PORT}
+      - NATS_SERVERS=nats://nats-server:4222
+      - DB_NAME=${DB_MESSAGES_NAME}
+      - DB_USERNAME=${DB_MESSAGES_USERNAME}
+      - DB_PASSWORD=${DB_MESSAGES_PASSWORD}
+      - DB_HOST=${DB_MESSAGES_HOST}
+      - DB_PORT=${DB_MESSAGES_PORT}
