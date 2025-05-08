@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  mcp-voting:
+    build: ./mcp-voting
+    ports:
+      - ${MCP_VOTING_PORT:-8001}:8000
+    volumes:
+      - ./mcp-voting:/app
+
+  mcp-contracting:
+    build: ./mcp-contracting
+    ports:
+      - ${MCP_CONTRACTING_PORT:-8002}:8000
+    volumes:
+      - ./mcp-contracting:/app
+
+  mcp-assistance:
+    build: ./mcp-assistance
+    ports:
+      - ${MCP_ASSISTANCE_PORT:-8003}:8000
+    volumes:
+      - ./mcp-assistance:/app 

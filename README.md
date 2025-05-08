@@ -90,3 +90,128 @@ Supongamos que el submódulo está en la carpeta `submodules/mi-submodulo`.
    git commit -m "Remove submodule submodules/mi-submodulo"
    git push
    ```
+
+## 🐳 Comandos útiles de Docker y Docker Compose
+
+### Comandos básicos de Docker Compose
+
+Si el archivo no se llama `docker-compose.yml`, agregar `-f nombre-archivo.yml` antes del comando. Ejemplo:
+
+```bash
+docker compose -f docker-compose.mcp.yml up
+```
+
+```bash
+# Iniciar servicios
+docker compose up
+
+# Iniciar servicios en modo detached (background)
+docker compose up -d
+
+# Detener servicios
+docker compose down
+
+# Ver logs de los servicios
+docker compose logs
+
+# Ver logs de un servicio específico
+docker compose logs nombre-servicio
+
+# Ver logs en tiempo real
+docker compose logs -f
+```
+
+### Comandos de construcción y reconstrucción
+
+```bash
+# Reconstruir todos los servicios
+docker compose build
+
+# Reconstruir un servicio específico
+docker compose build nombre-servicio
+
+# Reconstruir sin usar caché
+docker compose build --no-cache
+
+# Reconstruir y levantar servicios
+docker compose up --build
+```
+
+### Comandos útiles de Docker
+
+#### Construcción de imágenes
+
+```bash
+# Construir imagen con Dockerfile (nombre por defecto)
+docker build -t nombre-imagen .
+
+# Construir imagen con archivo que no se llama Dockerfile
+docker build -f nombre-archivo.dockerfile -t nombre-imagen .
+
+# Construir imagen con nombre y tag específicos
+docker build -t nombre-imagen:tag .
+
+# Construir sin usar caché
+docker build --no-cache -t nombre-imagen .
+```
+
+#### Gestión de contenedores
+
+```bash
+# Ver contenedores en ejecución
+docker ps
+
+# Ver todos los contenedores (incluyendo detenidos)
+docker ps -a
+
+# Detener un contenedor
+docker stop nombre-contenedor
+
+# Eliminar un contenedor
+docker rm nombre-contenedor
+
+# Eliminar todos los contenedores detenidos
+docker container prune
+```
+
+#### Gestión de imágenes
+
+```bash
+# Ver imágenes locales
+docker images
+
+# Eliminar una imagen
+docker rmi nombre-imagen
+
+# Eliminar imágenes sin usar
+docker image prune
+
+# Eliminar todas las imágenes sin usar
+docker image prune -a
+```
+
+### Comandos de limpieza
+
+```bash
+# Eliminar contenedores, redes e imágenes sin usar
+docker system prune
+
+# Eliminar todo (contenedores, redes, imágenes y volúmenes)
+docker system prune -a --volumes
+```
+
+### Comandos de inspección
+
+```bash
+# Ver detalles de un contenedor
+docker inspect nombre-contenedor
+
+# Ver logs de un contenedor
+docker logs nombre-contenedor
+
+# Ver logs en tiempo real
+docker logs -f nombre-contenedor
+
+# Ver uso de recursos
+docker stats
+```
