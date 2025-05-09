@@ -21,6 +21,9 @@ services:
   ms-messages:
     depends_on:
       - db-messages
+      - mcp-voting
+      - mcp-contracting
+      - mcp-assistance
     build: ./ms-messages
     ports:
       - ${MESSAGES_PORT:-8000}:8000
@@ -36,6 +39,11 @@ services:
       - DB_PASSWORD=${DB_MESSAGES_PASSWORD:-123456}
       - DB_HOST=${DB_MESSAGES_HOST:-db-messages}
       - DB_PORT=${DB_MESSAGES_PORT:-5432}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - TAVILY_API_KEY=${TAVILY_API_KEY}
+      - MCP_VOTING_URL=http://mcp-voting:8000/sse
+      - MCP_CONTRACTING_URL=http://mcp-contracting:8000/sse
+      - MCP_ASISTANCE_URL=http://mcp-assistance:8000/sse
 
   db-messages:
     container_name: db-messages
@@ -44,8 +52,32 @@ services:
     volumes:
       - ./ms-messages/postgres:/var/lib/postgresql/data
     ports:
-      - ${DB_MESSAGES_PORT:-5532}:5432
+      - 5532:5432
     environment:
       - POSTGRES_DB=${DB_MESSAGES_NAME:-message-app-db}
       - POSTGRES_USER=${DB_MESSAGES_USERNAME:-postgres}
       - POSTGRES_PASSWORD=${DB_MESSAGES_PASSWORD:-123456}
+
+  mcp-voting:
+    build: ./mcp-voting
+    command: python main.py
+    ports:
+      - ${MCP_HOST_VOTING_PORT:-8001}:8000
+    volumes:
+      - ./mcp-voting:/app
+
+  mcp-contracting:
+    build: ./mcp-contracting
+    command: python main.py
+    ports:
+      - ${MCP_HOST_CONTRACTING_PORT:-8002}:8000
+    volumes:
+      - ./mcp-contracting:/app
+
+  mcp-assistance:
+    build: ./mcp-assistance
+    command: python main.py
+    ports:
+      - ${MCP_HOST_ASSISTANCE_PORT:-8003}:8000
+    volumes:
+      - ./mcp-assistance:/app 
