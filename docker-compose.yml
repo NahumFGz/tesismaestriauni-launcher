@@ -10,7 +10,7 @@ services:
   ms-gateway:
     build: ./ms-gateway
     ports:
-      - ${GATEWAY_PORT}:3000
+      - ${GATEWAY_PORT:-3000}:3000
     volumes:
       - ./ms-gateway/src:/usr/src/app/src
     command: npm run start:dev
@@ -19,17 +19,33 @@ services:
       - NATS_SERVERS=nats://nats-server:4222  
 
   ms-messages:
+    depends_on:
+      - db-messages
     build: ./ms-messages
     ports:
-      - ${MESSAGES_PORT}:8000
+      - ${MESSAGES_PORT:-8000}:8000
     volumes:
-      - ./ms-messages/src:/app/src
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+      - ./ms-messages/app:/app/app
+      - ./ms-messages/alembic:/app/alembic
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload 
     environment:
-      - PORT=${MESSAGES_PORT}
-      - NATS_SERVERS=nats://nats-server:4222
-      - DB_NAME=${DB_MESSAGES_NAME}
-      - DB_USERNAME=${DB_MESSAGES_USERNAME}
-      - DB_PASSWORD=${DB_MESSAGES_PASSWORD}
-      - DB_HOST=${DB_MESSAGES_HOST}
-      - DB_PORT=${DB_MESSAGES_PORT}
+      - PORT=${MESSAGES_PORT:-8000}
+      - NATS_SERVERS=${NATS_SERVERS:-nats://nats-server:4222}
+      - DB_NAME=${DB_MESSAGES_NAME:-message-app-db}
+      - DB_USERNAME=${DB_MESSAGES_USERNAME:-postgres}
+      - DB_PASSWORD=${DB_MESSAGES_PASSWORD:-123456}
+      - DB_HOST=${DB_MESSAGES_HOST:-db-messages}
+      - DB_PORT=${DB_MESSAGES_PORT:-5432}
+
+  db-messages:
+    container_name: db-messages
+    image: postgres:16.2
+    restart: always
+    volumes:
+      - ./ms-messages/postgres:/var/lib/postgresql/data
+    ports:
+      - ${DB_MESSAGES_PORT:-5532}:5432
+    environment:
+      - POSTGRES_DB=${DB_MESSAGES_NAME:-message-app-db}
+      - POSTGRES_USER=${DB_MESSAGES_USERNAME:-postgres}
+      - POSTGRES_PASSWORD=${DB_MESSAGES_PASSWORD:-123456}
