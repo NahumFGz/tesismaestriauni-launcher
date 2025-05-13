@@ -19,3 +19,18 @@
 [submodule "frontend"]
 	path = frontend
 	url = git@github.com:NahumFGz/tesismaestriauni-frontend.git
+[submodule "publicdata-scraper"]
+	path = publicdata-scraper
+	url = git@github.com:NahumFGz/tesismaestriauni-publicdata-scraper.git
+[submodule "publicdata-classifier"]
+	path = publicdata-classifier
+	url = git@github.com:NahumFGz/tesismaestriauni-publicdata-classifier.git
+[submodule "train-voting"]
+	path = train-voting
+	url = git@github.com:NahumFGz/tesismaestriauni-train-voting.git
+[submodule "train-attendance"]
+	path = train-attendance
+	url = git@github.com:NahumFGz/tesismaestriauni-train-attendance.git
+[submodule "train-budget"]
+	path = train-budget
+	url = git@github.com:NahumFGz/tesismaestriauni-train-budget.git
