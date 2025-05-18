@@ -58,6 +58,22 @@ services:
       - POSTGRES_USER=${DB_MESSAGES_USERNAME:-postgres}
       - POSTGRES_PASSWORD=${DB_MESSAGES_PASSWORD:-123456}
 
+  mcp-assistance:
+    build: ./mcp-assistance
+    command: python main.py
+    ports:
+      - ${MCP_HOST_ASSISTANCE_PORT:-8003}:8000
+    volumes:
+      - ./mcp-assistance:/app 
+
+  mcp-assistance-static-server:
+    image: nginx:1.25.3-alpine
+    ports:
+      - 8080:80
+    volumes:
+      - ./train-attendance/data/f_compressed:/usr/share/nginx/html:ro
+      - ./train-attendance/default.conf:/etc/nginx/conf.d/default.conf:ro
+
   mcp-voting:
     build: ./mcp-voting
     command: python main.py
@@ -74,10 +90,3 @@ services:
     volumes:
       - ./mcp-contracting:/app
 
-  mcp-assistance:
-    build: ./mcp-assistance
-    command: python main.py
-    ports:
-      - ${MCP_HOST_ASSISTANCE_PORT:-8003}:8000
-    volumes:
-      - ./mcp-assistance:/app 
