@@ -22,8 +22,8 @@ services:
     depends_on:
       - db-messages
       - mcp-voting
-      - mcp-contracting
-      - mcp-assistance
+      - mcp-budget
+      - mcp-attendance
     build: ./ms-messages
     ports:
       - ${MESSAGES_PORT:-8000}:8000
@@ -42,8 +42,8 @@ services:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - TAVILY_API_KEY=${TAVILY_API_KEY}
       - MCP_VOTING_URL=http://mcp-voting:8000/sse
-      - MCP_CONTRACTING_URL=http://mcp-contracting:8000/sse
-      - MCP_ASISTANCE_URL=http://mcp-assistance:8000/sse
+      - MCP_BUDGET_URL=http://mcp-budget:8000/sse
+      - MCP_ATTENDANCE_URL=http://mcp-attendance:8000/sse
 
   db-messages:
     container_name: db-messages
@@ -58,15 +58,15 @@ services:
       - POSTGRES_USER=${DB_MESSAGES_USERNAME:-postgres}
       - POSTGRES_PASSWORD=${DB_MESSAGES_PASSWORD:-123456}
 
-  mcp-assistance:
-    build: ./mcp-assistance
+  mcp-attendance:
+    build: ./mcp-attendance
     command: python main.py
     ports:
-      - ${MCP_HOST_ASSISTANCE_PORT:-8003}:8000
+      - ${MCP_HOST_ATTENDANCE_PORT:-8003}:8000
     volumes:
-      - ./mcp-assistance:/app 
+      - ./mcp-attendance:/app 
 
-  mcp-assistance-static-server:
+  mcp-attendance-static-server:
     image: nginx:1.25.3-alpine
     ports:
       - 8080:80
@@ -82,11 +82,11 @@ services:
     volumes:
       - ./mcp-voting:/app
 
-  mcp-contracting:
-    build: ./mcp-contracting
+  mcp-budget:
+    build: ./mcp-budget
     command: python main.py
     ports:
-      - ${MCP_HOST_CONTRACTING_PORT:-8002}:8000
+      - ${MCP_HOST_BUDGET_PORT:-8002}:8000
     volumes:
-      - ./mcp-contracting:/app
+      - ./mcp-budget:/app
 
