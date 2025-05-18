@@ -7,9 +7,6 @@
 [submodule "ms-messages"]
 	path = ms-messages
 	url = git@github.com:NahumFGz/tesismaestriauni-ms-messages.git
-[submodule "mcp-assistance"]
-	path = mcp-assistance
-	url = git@github.com:NahumFGz/tesismaestriauni-mcp-assistance.git
 [submodule "mcp-voting"]
 	path = mcp-voting
 	url = git@github.com:NahumFGz/tesismaestriauni-mcp-voting.git
