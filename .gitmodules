@@ -10,9 +10,6 @@
 [submodule "mcp-voting"]
 	path = mcp-voting
 	url = git@github.com:NahumFGz/tesismaestriauni-mcp-voting.git
-[submodule "mcp-contracting"]
-	path = mcp-contracting
-	url = git@github.com:NahumFGz/tesismaestriauni-mcp-contracting.git
 [submodule "frontend"]
 	path = frontend
 	url = git@github.com:NahumFGz/tesismaestriauni-frontend.git
