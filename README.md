@@ -46,51 +46,6 @@ Si se hace al revés, se perderán las referencias de los sub-módulos en el rep
 
 Claro, aquí tienes la documentación ampliada para tu `README.md`, con una sección al final que explica cómo eliminar submódulos de manera segura:
 
----
-
-### 🧹 Pasos para eliminar un Git Submodule
-
-Supongamos que el submódulo está en la carpeta `submodules/mi-submodulo`.
-
-1. **Eliminar la entrada del submódulo del archivo `.gitmodules`:**
-
-   ```bash
-   git config -f .gitmodules --remove-section submodule.submodules/mi-submodulo
-   ```
-
-   También puedes editar manualmente `.gitmodules` y eliminar la sección correspondiente.
-
-2. **Eliminar la configuración del submódulo en `.git/config`:**
-
-   ```bash
-   git config --remove-section submodule.submodules/mi-submodulo
-   ```
-
-3. **Eliminar el submódulo del índice de Git:**
-
-   ```bash
-   git rm --cached submodules/mi-submodulo
-   ```
-
-4. **Eliminar la carpeta física del submódulo:**
-
-   ```bash
-   rm -rf submodules/mi-submodulo
-   ```
-
-5. **Eliminar los datos internos del submódulo (en `.git/modules`):**
-
-   ```bash
-   rm -rf .git/modules/submodules/mi-submodulo
-   ```
-
-6. **Hacer commit de los cambios:**
-
-   ```bash
-   git commit -m "Remove submodule submodules/mi-submodulo"
-   git push
-   ```
-
 ## 🐳 Comandos útiles de Docker y Docker Compose
 
 ### Comandos básicos de Docker Compose
@@ -99,6 +54,10 @@ Si el archivo no se llama `docker-compose.yml`, agregar `-f nombre-archivo.yml` 
 
 ```bash
 docker compose -f docker-compose.mcp.yml up
+```
+
+```bash
+docker compose -p nombre-proyecto up
 ```
 
 ```bash
