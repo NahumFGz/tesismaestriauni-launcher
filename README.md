@@ -6,6 +6,7 @@
 2. Crear un .env basado en el .env.template
 3. Ejecutar el comando `git submodule update --init --recursive` para reconstruir los sub-módulos
 4. Ejecutar el comando `docker compose up --build`
+5. Para actualizar referencias `git submodule update --remote`
 
 ### Pasos para crear los Git Submodules
 

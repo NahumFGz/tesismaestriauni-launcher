@@ -64,7 +64,11 @@ services:
     ports:
       - ${MCP_HOST_ATTENDANCE_PORT:-8003}:8000
     volumes:
-      - ./mcp-attendance:/app 
+      - ./mcp-attendance:/app
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
 
   mcp-attendance-static-server:
     image: nginx:1.25.3-alpine
@@ -73,6 +77,15 @@ services:
     volumes:
       - ./train-attendance/data/f_compressed:/usr/share/nginx/html:ro
       - ./train-attendance/default.conf:/etc/nginx/conf.d/default.conf:ro
+
+  qdrant:
+    image: qdrant/qdrant
+    container_name: qdrant
+    ports:
+      - "6333:6333"   # API REST
+      - "6334:6334"   # gRPC (opcional)
+    volumes:
+      - ./train-attendance/qdrant_storage:/qdrant/storage
 
   mcp-voting:
     build: ./mcp-voting
