@@ -100,6 +100,7 @@ services:
 
   qdrant:
     image: qdrant/qdrant
+    restart: always
     container_name: qdrant
     ports:
       - "6333:6333"   # API REST
