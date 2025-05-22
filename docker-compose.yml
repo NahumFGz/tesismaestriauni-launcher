@@ -89,6 +89,13 @@ services:
       - ${MCP_HOST_BUDGET_PORT:-8002}:8000
     volumes:
       - ./mcp-budget:/app
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - POSTGRES_HOST=${DB_BUDGET_HOST:-db-budget}
+      - POSTGRES_PORT=${DB_BUDGET_PORT:-5432}
+      - POSTGRES_DB=${DB_BUDGET_NAME:-budget-mcp-db}
+      - POSTGRES_USER=${DB_BUDGET_USERNAME:-postgres}
+      - POSTGRES_PASSWORD=${DB_BUDGET_PASSWORD:-123456}
 
   mcp-static-server:
     image: nginx:1.25.3-alpine
@@ -107,3 +114,17 @@ services:
       - "6334:6334"   # gRPC (opcional)
     volumes:
       - ./train-attendance/qdrant_storage:/qdrant/storage
+
+  db-budget:
+    container_name: db-budget
+    image: postgres:16.2
+    restart: always
+    volumes:
+      - ./train-budget/postgres:/var/lib/postgresql/data
+      - ./train-budget/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 5632:5432
+    environment:
+      - POSTGRES_DB=${DB_MESSAGES_NAME:-budget-mcp-db}
+      - POSTGRES_USER=${DB_MESSAGES_USERNAME:-postgres}
+      - POSTGRES_PASSWORD=${DB_MESSAGES_PASSWORD:-123456}
