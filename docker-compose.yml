@@ -114,7 +114,7 @@ services:
       - 6333:6333   # API REST
       - 6334:6334   # gRPC (opcional)
     volumes:
-      - ./train-attendance/qdrant_storage:/qdrant/storage
+      - ./others/qdrant/storage:/qdrant/storage
 
   db-budget:
     container_name: db-budget
