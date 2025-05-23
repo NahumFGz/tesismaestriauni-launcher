@@ -7,4 +7,6 @@
 
 **/.env
 **/node_modules/
-**/postgres/
+
+# Ignorar dbs
+others/budget-mcp-db/postgres/

@@ -1,0 +1,1 @@
+CREATE DATABASE "budget-mcp-db";
