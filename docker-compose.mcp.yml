@@ -45,9 +45,9 @@ services:
       - POSTGRES_PASSWORD=${DB_BUDGET_PASSWORD:-123456}
 
   qdrant-db:
-    image: qdrant/qdrant
+    image: qdrant/qdrant:v1.14.0
     restart: always
-    container_name: qdrant
+    container_name: qdrant-db
     ports:
       - "6333:6333"   # API REST
       - "6334:6334"   # gRPC (opcional)
@@ -64,9 +64,9 @@ services:
     ports:
       - 5632:5432
     environment:
-      - POSTGRES_DB=${DB_MESSAGES_NAME:-budget-mcp-db}
-      - POSTGRES_USER=${DB_MESSAGES_USERNAME:-postgres}
-      - POSTGRES_PASSWORD=${DB_MESSAGES_PASSWORD:-123456}
+      - POSTGRES_DB=budget-mcp-db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
 
   mcp-static-server:
     image: nginx:1.25.3-alpine
