@@ -50,7 +50,7 @@ services:
     image: postgres:16.2
     restart: always
     volumes:
-      - ./ms-messages/postgres:/var/lib/postgresql/data
+      - ./others/message-app-db/postgres:/var/lib/postgresql/data
       - ./others/message-app-db/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - 5532:5432

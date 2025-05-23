@@ -12,3 +12,4 @@
 others/budget-mcp-db/postgres/
 others/message-app-db/postgres/
 others/qdrant/storage/
+others/*.zip
