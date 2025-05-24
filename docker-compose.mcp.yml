@@ -1,37 +1,41 @@
+version: '3'
+
+networks:
+  microservices-network:
+    name: microservices-network
+
 services:
   mcp-attendance:
     build: ./mcp-attendance
     command: python main.py
-    depends_on:
-      - qdrant-db
     ports:
       - ${MCP_HOST_ATTENDANCE_PORT:-8003}:8000
     volumes:
       - ./mcp-attendance:/app
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - QDRANT_HOST=qdrant-db
+      - QDRANT_HOST=qdrant
       - QDRANT_PORT=6333
+    networks:
+      - microservices-network
 
   mcp-voting:
     build: ./mcp-voting
     command: python main.py
-    depends_on:
-      - qdrant-db
     ports:
       - ${MCP_HOST_VOTING_PORT:-8001}:8000
     volumes:
       - ./mcp-voting:/app
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - QDRANT_HOST=qdrant-db
+      - QDRANT_HOST=qdrant
       - QDRANT_PORT=6333
+    networks:
+      - microservices-network
 
   mcp-budget:
     build: ./mcp-budget
     command: python main.py
-    depends_on:
-      - db-budget
     ports:
       - ${MCP_HOST_BUDGET_PORT:-8002}:8000
     volumes:
@@ -43,35 +47,33 @@ services:
       - POSTGRES_DB=${DB_BUDGET_NAME:-budget-mcp-db}
       - POSTGRES_USER=${DB_BUDGET_USERNAME:-postgres}
       - POSTGRES_PASSWORD=${DB_BUDGET_PASSWORD:-123456}
+    networks:
+      - microservices-network
 
-  qdrant-db:
+  qdrant:
     image: qdrant/qdrant:v1.14.0
     restart: always
-    container_name: qdrant-db
+    container_name: qdrant
     ports:
-      - "6333:6333"   # API REST
-      - "6334:6334"   # gRPC (opcional)
+      - 6333:6333   # API REST
+      - 6334:6334   # gRPC (opcional)
     volumes:
-      - ./train-attendance/qdrant_storage:/qdrant/storage
+      - ./others/qdrant/storage:/qdrant/storage
+    networks:
+      - microservices-network
 
   db-budget:
     container_name: db-budget
     image: postgres:16.2
     restart: always
     volumes:
-      - ./train-budget/postgres:/var/lib/postgresql/data
-      - ./train-budget/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./others/budget-mcp-db/postgres:/var/lib/postgresql/data
+      - ./others/budget-mcp-db/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - 5632:5432
     environment:
-      - POSTGRES_DB=budget-mcp-db
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=123456
-
-  mcp-static-server:
-    image: nginx:1.25.3-alpine
-    ports:
-      - 8080:80
-    volumes:
-      - ./publicdata-yolo/data/h_compressed_dataset:/usr/share/nginx/html:ro
-      - ./default.conf:/etc/nginx/conf.d/default.conf:ro
+      - POSTGRES_DB=${DB_BUDGET_NAME:-budget-mcp-db}
+      - POSTGRES_USER=${DB_BUDGET_USERNAME:-postgres}
+      - POSTGRES_PASSWORD=${DB_BUDGET_PASSWORD:-123456}
+    networks:
+      - microservices-network
