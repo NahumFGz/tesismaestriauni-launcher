@@ -47,7 +47,7 @@ Si se hace al revés, se perderán las referencias de los sub-módulos en el rep
 
 Claro, aquí tienes la documentación ampliada para tu `README.md`, con una sección al final que explica cómo eliminar submódulos de manera segura:
 
-## 🐳 Comandos útiles de Docker y Docker Compose
+## 🐳 Comandos útiles de Docker
 
 ### Comandos básicos de Docker Compose
 
