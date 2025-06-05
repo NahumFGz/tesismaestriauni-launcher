@@ -11,5 +11,6 @@
 # Ignorar dbs
 others/budget-mcp-db/postgres/
 others/message-app-db/postgres/
+others/observability/*/
 others/qdrant/storage/
 others/*.zip
