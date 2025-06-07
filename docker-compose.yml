@@ -18,6 +18,16 @@ services:
       - PORT=3000
       - NATS_SERVERS=nats://nats-server:4222  
 
+  ms-documents:
+    build: ./ms-documents
+    volumes:
+      - ./ms-documents/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=3001
+      - NATS_SERVERS=nats://nats-server:4222
+      - POSTGRES_URL=postgresql://postgres:123456@db-documents:5732/documents-app-db
+
   ms-messages:
     depends_on:
       - db-messages
@@ -59,7 +69,23 @@ services:
       - POSTGRES_USER=${DB_MESSAGES_USERNAME:-postgres}
       - POSTGRES_PASSWORD=${DB_MESSAGES_PASSWORD:-123456}
 
+  db-documents:
+    container_name: db-documents
+    image: postgres:16.2
+    restart: always
+    volumes:
+      - ./others/documents-app-db/postgres:/var/lib/postgresql/data
+      - ./others/documents-app-db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 5732:5432
+    environment:
+      - POSTGRES_DB=${DB_DOCUMENTS_NAME:-documents-app-db}
+      - POSTGRES_USER=${DB_DOCUMENTS_USERNAME:-postgres}
+      - POSTGRES_PASSWORD=${DB_DOCUMENTS_PASSWORD:-123456}
+
   mcp-attendance:
+    depends_on:
+      - qdrant
     build: ./mcp-attendance
     command: python main.py
     ports:
@@ -72,6 +98,8 @@ services:
       - QDRANT_PORT=6333
 
   mcp-voting:
+    depends_on:
+      - qdrant
     build: ./mcp-voting
     command: python main.py
     ports:
@@ -84,6 +112,8 @@ services:
       - QDRANT_PORT=6333
 
   mcp-budget:
+    depends_on:
+      - db-budget
     build: ./mcp-budget
     command: python main.py
     ports:
