@@ -159,3 +159,8 @@ services:
       - POSTGRES_DB=${DB_MESSAGES_NAME:-budget-mcp-db}
       - POSTGRES_USER=${DB_MESSAGES_USERNAME:-postgres}
       - POSTGRES_PASSWORD=${DB_MESSAGES_PASSWORD:-123456}
+
+  frontend:
+    build: ./frontend
+    ports:
+      - 5174:80
