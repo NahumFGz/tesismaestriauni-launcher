@@ -9,9 +9,9 @@
 **/node_modules/
 
 # Ignorar dbs
-others/budget-mcp-db/postgres/
-others/message-app-db/postgres/
-others/documents-app-db/postgres/
+others/databases/budget-mcp-db/postgres/
+others/databases/message-app-db/postgres/
+others/databases/documents-app-db/postgres/
 others/observability/
-others/qdrant/storage/
+others/databases/qdrant/storage/
 others/*.zip
