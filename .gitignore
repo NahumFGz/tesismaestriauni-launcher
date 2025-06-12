@@ -9,9 +9,13 @@
 **/node_modules/
 
 # Ignorar dbs
-others/databases/budget-mcp-db/postgres/
-others/databases/message-app-db/postgres/
-others/databases/documents-app-db/postgres/
-others/observability/
-others/databases/qdrant/storage/
-others/*.zip
+others/data/budget-mcp-db/postgres/
+others/data/message-app-db/postgres/
+others/data/documents-app-db/postgres/
+others/data/observability/
+others/data/qdrant/storage/
+others/data/nginx-files/asistencia/*.jpg
+others/data/nginx-files/asistencia/*.png
+others/data/nginx-files/votacion/*.jpg
+others/data/nginx-files/votacion/*.png
+others/*/*.zip
