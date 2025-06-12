@@ -163,4 +163,8 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - 5174:80
+      - 4000:80
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - ms-gateway

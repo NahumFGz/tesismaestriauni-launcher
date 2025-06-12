@@ -18,4 +18,7 @@ others/data/nginx-files/asistencia/*.jpg
 others/data/nginx-files/asistencia/*.png
 others/data/nginx-files/votacion/*.jpg
 others/data/nginx-files/votacion/*.png
-others/*/*.zip
+others/**/*.zip
+
+others/data/x/
+others/start/data/__MACOSX/
