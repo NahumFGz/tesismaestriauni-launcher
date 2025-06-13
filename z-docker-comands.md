@@ -1,4 +1,4 @@
-# tesismaestriauni-launcher
+# Docker comands
 
 ## Dev
 
