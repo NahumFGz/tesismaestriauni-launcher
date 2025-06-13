@@ -21,14 +21,21 @@ others/start/downloads/
 
 ## 📦 2. Preparar los Datos
 
-Desde el directorio `others/start`, da permisos y ejecuta:
+Dependiendo de tu sistema operativo, ejecuta el script correspondiente para **descomprimir** los archivos ZIP en `others/data/`:
+
+### 🐧 Linux / macOS
 
 ```bash
 chmod +x uncompress.sh
 ./uncompress.sh
 ```
 
-Esto descomprime los archivos y deja todo listo en `others/data/`.
+### 🪟 Windows (PowerShell)
+
+```powershell
+cd .\others\start\
+.\uncompress.ps1
+```
 
 ## 🐳 3. Levantar el Proyecto
 
@@ -40,27 +47,38 @@ docker compose up
 
 > Asegúrate de tener **Docker** y **Docker Compose** instalados.
 
----
-
 ## 🧰 Scripts Útiles
 
-### `uncompress.sh`
+### 🔓 Descompresión
 
-Descomprime los archivos ZIP del proyecto.
+- `uncompress.sh` – Linux/macOS
+- `uncompress.ps1` – Windows
 
-### `compress.sh`
+Descomprime los archivos ZIP descargados en `others/data`.
 
-Vuelve a comprimir los datos para compartir o respaldar:
+### 🗜️ Compresión
+
+- `compress.sh` – Linux/macOS
+- `compress.ps1` – Windows
+
+Vuelve a comprimir las carpetas de `others/data` en ZIP para compartir o respaldar:
+
+#### Linux/macOS:
 
 ```bash
 chmod +x compress.sh
 ./compress.sh
 ```
 
----
+#### Windows:
+
+```powershell
+cd .\others\start\
+.\compress.ps1
+```
 
 ## 🔄 Flujo de Trabajo
 
-- **Instalación inicial:** descarga → descomprime → `docker compose up`.
-- **Para compartir:** ejecuta `compress.sh` y sube a Drive.
-- **Para actualizar:** descarga desde Drive → `uncompress.sh`.
+- **Instalación inicial:** descarga → descomprime (`uncompress.sh` o `uncompress.ps1`) → `docker compose up`
+- **Para compartir datos:** ejecuta el script de compresión (`compress.sh` o `compress.ps1`) y sube a Drive
+- **Para restaurar datos:** descarga desde Drive → descomprime con el script correspondiente
