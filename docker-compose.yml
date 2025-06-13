@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   nats-server:
@@ -16,7 +16,7 @@ services:
     command: npm run start:dev
     environment:
       - PORT=3000
-      - NATS_SERVERS=nats://nats-server:4222  
+      - NATS_SERVERS=nats://nats-server:4222
 
   ms-documents:
     build: ./ms-documents
@@ -40,7 +40,7 @@ services:
     volumes:
       - ./ms-messages/app:/app/app
       - ./ms-messages/alembic:/app/alembic
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload 
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     environment:
       - PORT=${MESSAGES_PORT:-8000}
       - NATS_SERVERS=${NATS_SERVERS:-nats://nats-server:4222}
@@ -51,9 +51,9 @@ services:
       - DB_PORT=${DB_MESSAGES_PORT:-5432}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - TAVILY_API_KEY=${TAVILY_API_KEY}
-      - MCP_VOTING_URL=http://mcp-voting:8000/sse
-      - MCP_BUDGET_URL=http://mcp-budget:8000/sse
-      - MCP_ATTENDANCE_URL=http://mcp-attendance:8000/sse
+      - MCP_VOTING_URL=http://mcp-voting:8000/mcp
+      - MCP_BUDGET_URL=http://mcp-budget:8000/mcp
+      - MCP_ATTENDANCE_URL=http://mcp-attendance:8000/mcp
 
   db-messages:
     container_name: db-messages
@@ -141,8 +141,8 @@ services:
     restart: always
     container_name: qdrant
     ports:
-      - 6333:6333   # API REST
-      - 6334:6334   # gRPC (opcional)
+      - 6333:6333 # API REST
+      - 6334:6334 # gRPC (opcional)
     volumes:
       - ./others/data/qdrant/storage:/qdrant/storage
 
