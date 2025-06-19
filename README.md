@@ -12,13 +12,13 @@ El sistema integra procesamiento de documentos públicos, modelos de lenguaje y 
 
 Para ejecutar correctamente el entorno, se requiere configurar las siguientes **API keys** en tu archivo `.env`:
 
-| Servicio               | Variable de entorno | URL para generar token                      |
-| ---------------------- | ------------------- | ------------------------------------------- |
-| OpenAI                 | `OPENAI_API_KEY`    | https://platform.openai.com/api-keys        |
-| Anthropic (Claude)     | `ANTHROPIC_API_KEY` | https://console.anthropic.com/settings/keys |
-| Tavily (búsquedas web) | `TAVILY_API_KEY`    | https://www.tavily.com/                     |
+| Servicio               | Variable de entorno | URL para generar token        |
+| ---------------------- | ------------------- | ----------------------------- |
+| OpenAI                 | `OPENAI_API_KEY`    | https://platform.openai.com   |
+| Anthropic (Claude)     | `ANTHROPIC_API_KEY` | https://console.anthropic.com |
+| Tavily (búsquedas web) | `TAVILY_API_KEY`    | https://www.tavily.com/       |
 
-> **Nota:** Actualmente no existe un archivo `.env.template` en el proyecto. Crea tu propio archivo `.env` con las variables mencionadas arriba.
+> **Nota:** Existe un archivo `.env.template` en el proyecto que contiene todas las variables de entorno disponibles. Para un inicio rápido, crea tu propio archivo `.env` con las variables mínimas mostradas arriba. Para una configuración más avanzada, consulta el archivo `.env.template` que incluye variables adicionales para personalización del sistema.
 
 ---
 
