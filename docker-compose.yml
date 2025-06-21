@@ -22,6 +22,7 @@ services:
     build: ./ms-documents
     volumes:
       - ./ms-documents/src:/usr/src/app/src
+      - ./ms-documents/generated:/usr/src/app/generated
     command: npm run start:dev
     environment:
       - PORT=${DOCUMENTS_PORT:-3001}
