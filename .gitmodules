@@ -33,6 +33,3 @@
 [submodule "train-budget"]
 	path = train-budget
 	url = git@github.com:NahumFGz/tesismaestriauni-train-budget.git
-[submodule "publicdata-yolo"]
-	path = publicdata-yolo
-	url = git@github.com:NahumFGz/tesismaestriauni-publicdata-yolo.git
