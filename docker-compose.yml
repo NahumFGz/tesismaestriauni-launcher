@@ -29,18 +29,18 @@ services:
       - NATS_SERVERS=${NATS_SERVERS:-nats://nats-server:4222}
       - POSTGRES_URL=${POSTGRES_URL:-postgresql://postgres:123456@db-documents:5432/documents-app-db}
 
-  ms-messages:
+  ms-chats:
     depends_on:
       - db-messages
       - mcp-voting
       - mcp-budget
       - mcp-attendance
-    build: ./ms-messages
+    build: ./ms-chats
     ports:
       - ${MESSAGES_PORT:-8000}:8000
     volumes:
-      - ./ms-messages/app:/app/app
-      - ./ms-messages/alembic:/app/alembic
+      - ./ms-chats/app:/app/app
+      - ./ms-chats/alembic:/app/alembic
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}

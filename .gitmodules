@@ -22,7 +22,6 @@
 	path = ms-gateway
 	url = git@github.com:NahumFGz/tesismaestriauni-ms-gateway.git
 
-
 [submodule "publicdata-scraper"]
 	path = publicdata-scraper
 	url = git@github.com:NahumFGz/tesismaestriauni-publicdata-scraper.git
