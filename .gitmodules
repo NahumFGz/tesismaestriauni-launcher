@@ -15,16 +15,9 @@
 [submodule "ms-gateway"]
 	path = ms-gateway
 	url = git@github.com:NahumFGz/tesismaestriauni-ms-gateway.git
-[submodule "ms-auth"]
-	path = ms-auth
-	url = git@github.com:NahumFGz/tesismaestriauni-ms-auth.git
 [submodule "ms-documents"]
 	path = ms-documents
 	url = git@github.com:NahumFGz/tesismaestriauni-ms-documents.git
-[submodule "ms-messages"]
-	path = ms-messages
-	url = git@github.com:NahumFGz/tesismaestriauni-ms-messages.git
-
 [submodule "publicdata-scraper"]
 	path = publicdata-scraper
 	url = git@github.com:NahumFGz/tesismaestriauni-publicdata-scraper.git
