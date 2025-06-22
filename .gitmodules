@@ -35,6 +35,10 @@
 [submodule "train-attendance"]
 	path = train-attendance
 	url = git@github.com:NahumFGz/tesismaestriauni-train-attendance.git
+[submodule "train-procurement"]
+	path = train-procurement
+	url = git@github.com:NahumFGz/tesismaestriauni-train-procurement.git
 [submodule "train-voting"]
 	path = train-voting
 	url = git@github.com:NahumFGz/tesismaestriauni-train-voting.git
+	
