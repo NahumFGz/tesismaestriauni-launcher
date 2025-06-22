@@ -5,6 +5,9 @@
 [submodule "mcp-attendance"]
 	path = mcp-attendance
 	url = git@github.com:NahumFGz/tesismaestriauni-mcp-attendance.git
+[submodule "mcp-procurement"]
+	path = mcp-procurement
+	url = git@github.com:NahumFGz/tesismaestriauni-mcp-procurement.git
 [submodule "mcp-voting"]
 	path = mcp-voting
 	url = git@github.com:NahumFGz/tesismaestriauni-mcp-voting.git
