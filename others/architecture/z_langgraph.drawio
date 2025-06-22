@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Página-1" id="Vq99Ms_KkJOUKtjacHWf">
-        <mxGraphModel dx="1256" dy="789" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1400" dy="797" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -13,7 +13,7 @@
                 <mxCell id="nUzkdtZB0xW63iCa-Nw7-31" value="Voting" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;fontColor=#ffffff;fontStyle=0;align=center;spacing=9;strokeOpacity=0;fillOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#4c535d;strokeWidth=1.5;lucidId=AWLcgVHqaEJb;" parent="1" vertex="1">
                     <mxGeometry x="548" y="388" width="165" height="102" as="geometry"/>
                 </mxCell>
-                <mxCell id="nUzkdtZB0xW63iCa-Nw7-32" value="Budget" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;fontColor=#ffffff;fontStyle=0;align=center;spacing=9;strokeOpacity=0;fillOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#4c535d;strokeWidth=1.5;lucidId=kXLc-Uf29qqT;" parent="1" vertex="1">
+                <mxCell id="nUzkdtZB0xW63iCa-Nw7-32" value="Procurement" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;fontColor=#ffffff;fontStyle=0;align=center;spacing=9;strokeOpacity=0;fillOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#4c535d;strokeWidth=1.5;lucidId=kXLc-Uf29qqT;" parent="1" vertex="1">
                     <mxGeometry x="549" y="560" width="165" height="102" as="geometry"/>
                 </mxCell>
                 <mxCell id="nUzkdtZB0xW63iCa-Nw7-33" value="Attendance" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;fontColor=#ffffff;fontStyle=0;align=center;spacing=9;strokeOpacity=0;fillOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#4c535d;strokeWidth=1.5;lucidId=NZLcRJQl1mac;" parent="1" vertex="1">

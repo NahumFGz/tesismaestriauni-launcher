@@ -1,0 +1,1 @@
+CREATE DATABASE "chat-app-db";

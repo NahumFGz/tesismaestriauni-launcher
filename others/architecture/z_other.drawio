@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Página-1" id="Vq99Ms_KkJOUKtjacHWf">
-        <mxGraphModel dx="1368" dy="458" grid="0" gridSize="10" guides="0" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="2200" dy="797" grid="0" gridSize="10" guides="0" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -40,7 +40,7 @@
                 <mxCell id="nUzkdtZB0xW63iCa-Nw7-19" value="Socket.io" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;fontStyle=0;align=center;spacing=9;verticalAlign=middle;strokeOpacity=0;fillOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#fcce14;strokeWidth=1.5;lucidId=x74cnt7NlLuL;" parent="1" vertex="1">
                     <mxGeometry x="-743" y="254" width="109" height="127" as="geometry"/>
                 </mxCell>
-                <mxCell id="nUzkdtZB0xW63iCa-Nw7-20" value="ms-messages" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;fontColor=#ffffff;fontStyle=0;align=center;spacing=9;verticalAlign=top;strokeOpacity=0;fillOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#647687;strokeWidth=1.5;lucidId=fALc.GhtOYFA;strokeColor=#314354;" parent="1" vertex="1">
+                <mxCell id="nUzkdtZB0xW63iCa-Nw7-20" value="ms-chats" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;fontColor=#ffffff;fontStyle=0;align=center;spacing=9;verticalAlign=top;strokeOpacity=0;fillOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#647687;strokeWidth=1.5;lucidId=fALc.GhtOYFA;strokeColor=#314354;" parent="1" vertex="1">
                     <mxGeometry x="-199" y="550" width="160" height="100" as="geometry"/>
                 </mxCell>
                 <mxCell id="nUzkdtZB0xW63iCa-Nw7-23" value="LangGraph" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;fontStyle=0;align=center;spacing=9;verticalAlign=top;strokeOpacity=0;fillOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#fff7a1;strokeWidth=1.5;lucidId=Uv5cd.NyrXPX;" parent="1" vertex="1">
@@ -130,7 +130,7 @@
                 <mxCell id="bIOdSwPcDAfTuEVSarzd-16" value="Postgresql" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;fontStyle=0;align=center;spacing=9;strokeOpacity=0;fillOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#9391ff;strokeWidth=1.5;lucidId=wK5c~Pdr7-m1;" parent="1" vertex="1">
                     <mxGeometry x="668" y="597.5" width="120" height="37" as="geometry"/>
                 </mxCell>
-                <mxCell id="bIOdSwPcDAfTuEVSarzd-18" value="mcp-budget" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;fontColor=#ffffff;fontStyle=0;align=center;spacing=9;verticalAlign=middle;strokeOpacity=0;fillOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#647687;strokeWidth=1.5;lucidId=zFLcMGYKQzSj;strokeColor=#314354;" parent="1" vertex="1">
+                <mxCell id="bIOdSwPcDAfTuEVSarzd-18" value="mcp-procurement" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;fontColor=#ffffff;fontStyle=0;align=center;spacing=9;verticalAlign=middle;strokeOpacity=0;fillOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#647687;strokeWidth=1.5;lucidId=zFLcMGYKQzSj;strokeColor=#314354;" parent="1" vertex="1">
                     <mxGeometry x="443" y="569" width="160" height="100" as="geometry"/>
                 </mxCell>
                 <mxCell id="bIOdSwPcDAfTuEVSarzd-19" value="mcp-voting" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;fontColor=#ffffff;fontStyle=0;align=center;spacing=9;verticalAlign=middle;strokeOpacity=0;fillOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#647687;strokeWidth=1.5;lucidId=zFLcMGYKQzSj;strokeColor=#314354;" parent="1" vertex="1">
