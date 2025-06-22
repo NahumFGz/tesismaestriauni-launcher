@@ -13,7 +13,7 @@ others/data/procurement-mcp-db/postgres/
 others/data/chat-app-db/postgres/
 others/data/documents-app-db/postgres/
 others/data/observability/
-others/data/qdrant-db/storage/
+others/data/db-qdrant/storage/
 others/data/nginx-files/asistencia/*.jpg
 others/data/nginx-files/asistencia/*.png
 others/data/nginx-files/votacion/*.jpg
