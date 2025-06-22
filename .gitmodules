@@ -22,22 +22,19 @@
 	path = ms-gateway
 	url = git@github.com:NahumFGz/tesismaestriauni-ms-gateway.git
 
-[submodule "publicdata-scraper"]
-	path = publicdata-scraper
-	url = git@github.com:NahumFGz/tesismaestriauni-publicdata-scraper.git
 [submodule "publicdata-classifier"]
 	path = publicdata-classifier
 	url = git@github.com:NahumFGz/tesismaestriauni-publicdata-classifier.git
+[submodule "publicdata-scraper"]
+	path = publicdata-scraper
+	url = git@github.com:NahumFGz/tesismaestriauni-publicdata-scraper.git
 [submodule "publicdata-yolo-ocr"]
 	path = publicdata-yolo-ocr
 	url = git@github.com:NahumFGz/tesismaestriauni-publicdata-yolo-ocr.git
 
-[submodule "train-voting"]
-	path = train-voting
-	url = git@github.com:NahumFGz/tesismaestriauni-train-voting.git
 [submodule "train-attendance"]
 	path = train-attendance
 	url = git@github.com:NahumFGz/tesismaestriauni-train-attendance.git
-[submodule "train-budget"]
-	path = train-budget
-	url = git@github.com:NahumFGz/tesismaestriauni-train-budget.git
+[submodule "train-voting"]
+	path = train-voting
+	url = git@github.com:NahumFGz/tesismaestriauni-train-voting.git
