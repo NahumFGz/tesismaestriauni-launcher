@@ -24,7 +24,7 @@ unzip_file() {
 }
 
 # Descomprimir archivos en others/data
-for zip_file in "$DOWNLOADS_DIR"/{budget-mcp-db.zip,documents-app-db.zip,message-app-db.zip,nginx-files.zip,qdrant.zip}; do
+for zip_file in "$DOWNLOADS_DIR"/{procurement-mcp-db.zip,documents-app-db.zip,chat-app-db.zip,nginx-files.zip,db-qdrant.zip}; do
     if [ -f "$zip_file" ]; then
         unzip_file "$zip_file" "$DATA_DIR"
     else

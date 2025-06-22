@@ -20,7 +20,7 @@ compress_dir() {
 }
 
 # Comprimir archivos desde others/data
-for dir in budget-mcp-db documents-app-db message-app-db nginx-files qdrant; do
+for dir in procurement-mcp-db documents-app-db chat-app-db nginx-files db-qdrant; do
     if [ -d "$DATA_DIR/$dir" ]; then
         compress_dir "$DATA_DIR/$dir" "$DOWNLOADS_DIR/$dir.zip"
     else
