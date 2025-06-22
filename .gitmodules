@@ -12,12 +12,15 @@
 	path = mcp-voting
 	url = git@github.com:NahumFGz/tesismaestriauni-mcp-voting.git
 
-[submodule "ms-gateway"]
-	path = ms-gateway
-	url = git@github.com:NahumFGz/tesismaestriauni-ms-gateway.git
+[submodule "ms-chats"]
+	path = ms-chats
+	url = git@github.com:NahumFGz/tesismaestriauni-ms-chats.git
 [submodule "ms-documents"]
 	path = ms-documents
 	url = git@github.com:NahumFGz/tesismaestriauni-ms-documents.git
+[submodule "ms-gateway"]
+	path = ms-gateway
+	url = git@github.com:NahumFGz/tesismaestriauni-ms-gateway.git
 
 
 [submodule "publicdata-scraper"]
