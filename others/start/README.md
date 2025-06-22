@@ -21,7 +21,7 @@ others/start/downloads/
 
 ## 📦 2. Preparar los Datos
 
-Dependiendo de tu sistema operativo, ejecuta el script correspondiente para **descomprimir** los archivos ZIP en `others/data/`:
+Ejecuta el script para **descomprimir** los archivos ZIP en `others/data/`:
 
 ### 🐧 Linux / macOS
 
@@ -30,12 +30,21 @@ chmod +x uncompress.sh
 ./uncompress.sh
 ```
 
-### 🪟 Windows (PowerShell)
+### 🪟 Windows
 
-```powershell
-cd .\others\start\
-.\uncompress.ps1
+Puedes usar cualquiera de estas opciones:
+
+**Opción 1: Git Bash (recomendado)**
+
+```bash
+chmod +x uncompress.sh
+./uncompress.sh
 ```
+
+**Opción 2: Descompresión manual**
+
+- Descomprime cada archivo ZIP de `others/start/downloads/` en `others/data/`
+- Asegúrate de mantener la estructura de carpetas correcta
 
 ## 🐳 3. Levantar el Proyecto
 
@@ -51,34 +60,23 @@ docker compose up
 
 ### 🔓 Descompresión
 
-- `uncompress.sh` – Linux/macOS
-- `uncompress.ps1` – Windows
+- `uncompress.sh` – Linux/macOS/Windows (Git Bash)
 
 Descomprime los archivos ZIP descargados en `others/data`.
 
 ### 🗜️ Compresión
 
-- `compress.sh` – Linux/macOS
-- `compress.ps1` – Windows
+- `compress.sh` – Linux/macOS/Windows (Git Bash)
 
 Vuelve a comprimir las carpetas de `others/data` en ZIP para compartir o respaldar:
-
-#### Linux/macOS:
 
 ```bash
 chmod +x compress.sh
 ./compress.sh
 ```
 
-#### Windows:
-
-```powershell
-cd .\others\start\
-.\compress.ps1
-```
-
 ## 🔄 Flujo de Trabajo
 
-- **Instalación inicial:** descarga → descomprime (`uncompress.sh` o `uncompress.ps1`) → `docker compose up`
-- **Para compartir datos:** ejecuta el script de compresión (`compress.sh` o `compress.ps1`) y sube a Drive
-- **Para restaurar datos:** descarga desde Drive → descomprime con el script correspondiente
+- **Instalación inicial:** descarga → descomprime (`uncompress.sh` o manualmente) → `docker compose up`
+- **Para compartir datos:** ejecuta el script de compresión (`compress.sh`) y sube a Drive
+- **Para restaurar datos:** descarga desde Drive → descomprime con el script o manualmente
