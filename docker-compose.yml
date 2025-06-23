@@ -123,7 +123,7 @@ services:
     volumes:
       - ./mcp-procurement:/app
     environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       - POSTGRES_HOST=${DB_PROCUREMENT_HOST:-db-procurement}
       - POSTGRES_PORT=${DB_PROCUREMENT_PORT:-5432}
       - POSTGRES_DB=${DB_PROCUREMENT_NAME:-procurement-mcp-db}
