@@ -32,11 +32,8 @@ Para ejecutar correctamente el entorno, se requiere configurar las siguientes **
 - **`ms-gateway/`**  
   Gateway NestJS que enruta solicitudes vía NATS a los microservicios internos.
 
-- **`ms-messages/`**  
+- **`ms-chats/`**  
   Microservicio de mensajería basado en Python/FastAPI que integra el protocolo MCP (Model Context Protocol) para la conexión con agentes locales y remotos. Gestiona la generación de respuestas mediante LangGraph.
-
-- **`ms-auth/`**  
-  Servicio de autenticación de usuarios desarrollado en NestJS con Prisma ORM.
 
 - **`ms-documents/`**  
   API REST desarrollada en NestJS para gestionar y consultar documentos OCR extraídos, incluyendo filtros por nombre y visualización directa. Utiliza Prisma con PostgreSQL.
@@ -47,14 +44,14 @@ Para ejecutar correctamente el entorno, se requiere configurar las siguientes **
 - **`mcp-voting/`**  
   Agente RAG para **votaciones parlamentarias** desarrollado en Python. Responde con base en evidencia recuperada utilizando Qdrant y técnicas de RAG.
 
-- **`mcp-budget/`**  
+- **`mcp-procurement/`**  
   Agente SQL para **contrataciones públicas** desarrollado en Python, que se conecta directamente a bases PostgreSQL. Utiliza herramientas como `sql_db_query` para generar respuestas estructuradas.
 
 ---
 
 ### 🧪 Entrenamiento y evaluación
 
-- **`train-attendance/`**, **`train-voting/`**, **`train-budget/`**  
+- **`train-attendance/`**, **`train-voting/`**, **`train-procurement/`**  
   Contienen notebooks Jupyter, scripts Python y configuraciones de entrenamiento y evaluación para cada agente. Incluyen experimentos con métricas como `Recall@k`, `MRR`, `BERTScore`, `SAS`, etc. Utilizan Poetry para gestión de dependencias.
 
 ---
@@ -74,7 +71,7 @@ Para ejecutar correctamente el entorno, se requiere configurar las siguientes **
 - **`publicdata-classifier/`**  
   Clasificadores desarrollados en PyTorch que identifican documentos relevantes (asistencias, votaciones, contratos) a partir de texto OCR o metadatos. Incluye experimentos con diferentes arquitecturas (DenseNet, EfficientNet, MobileNet, ResNet, VGG).
 
-- **`publicdata-yolo/`**  
+- **`publicdata-yolo-ocr/`**  
   Anotaciones y configuraciones de entrenamiento para segmentación de zonas clave mediante YOLOv8. Incluye evaluación de modelos OCR (Teseract, EasyOCR, Doctr, PaddleOCR) con métricas CER y WER. Integra Label Studio para anotación de datos.
 
 ---
@@ -86,7 +83,7 @@ Para ejecutar correctamente el entorno, se requiere configurar las siguientes **
   - `architecture/`: Diagramas y esquemas de arquitectura del sistema en formato DrawIO y GIF:
     - `langgraph.gif`: Flujo de LangGraph
     - `basic.gif`: Arquitectura básica del sistema
-    - `others.gif`: Arquitectura con microservicios adicionales
+    - `other.gif`: Arquitectura con microservicios adicionales
     - `redis.gif`: Arquitectura con Redis
   - `data/`: Respaldos y muestras de bases de datos organizados por servicio
   - `start/`: Scripts de inicialización de bases de datos y volúmenes

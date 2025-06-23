@@ -6,10 +6,18 @@ Esta carpeta contiene archivos de soporte, documentación y recursos adicionales
 
 Contiene la documentación visual de la arquitectura del sistema:
 
-- **Diagramas PNG**: Serie de diagramas de arquitectura (a_arquitectura.png hasta i_arquitectura.png) que muestran diferentes vistas y componentes del sistema
-- **Archivos DrawIO**:
-  - `z_arquitectura.drawio` - Diagrama editable de la arquitectura general
-  - `z_langgraph.drawio` - Diagrama específico de LangGraph
+- **Diagramas GIF**: Representaciones visuales exportadas de los diagramas de arquitectura
+
+  - `basic.gif` - Diagrama básico de la arquitectura del sistema
+  - `langgraph.gif` - Arquitectura de los agentes con LangGraph
+  - `other.gif` - Ejemplo de cómo agregar microservicios
+  - `redis.gif` - Ejemplo de cómo escalar con Redis
+
+- **Archivos DrawIO editables**:
+  - `z_basic.drawio` - Diagrama básico de la arquitectura del sistema
+  - `z_langgraph.drawio` - Arquitectura de los agentes con LangGraph
+  - `z_other.drawio` - Ejemplo de cómo agregar microservicios
+  - `z_redis.drawio` - Ejemplo de cómo escalar con Redis
 
 Esta carpeta es útil para entender el diseño y la estructura general del proyecto antes de trabajar con el código.
 
@@ -19,10 +27,10 @@ Contiene los datos persistentes y configuraciones de los servicios de la aplicac
 
 ### Subcarpetas de bases de datos:
 
-- **`budget-mcp-db/`**: Datos de PostgreSQL para la aplicación de presupuestos
+- **`chat-app-db/`**: Datos de PostgreSQL para la aplicación de chats
 - **`documents-app-db/`**: Datos de PostgreSQL para la aplicación de documentos
-- **`message-app-db/`**: Datos de PostgreSQL para la aplicación de mensajes
-- **`qdrant/`**: Almacenamiento de la base de datos vectorial Qdrant
+- **`procurement-mcp-db/`**: Datos de PostgreSQL para la aplicación de procurement/adquisiciones
+- **`db-qdrant/`**: Almacenamiento de la base de datos vectorial Qdrant
 - **`nginx-files/`**: Archivos de configuración y contenido estático de Nginx
 
 Estas carpetas son montadas como volúmenes por Docker Compose para mantener la persistencia de datos entre reinicios del contenedor.
@@ -35,17 +43,17 @@ Contiene los scripts y archivos necesarios para la configuración inicial del pr
 
 - **`README.md`**: Guía detallada para el inicio rápido del proyecto
 - **Scripts de compresión/descompresión**:
-  - `compress.sh` / `compress.ps1` - Comprimen las carpetas de datos en archivos ZIP
-  - `uncompress.sh` / `uncompress.ps1` - Descomprimen los archivos ZIP descargados
+  - `compress.sh` - Comprime las carpetas de datos en archivos ZIP
+  - `uncompress.sh` - Descomprime los archivos ZIP descargados
 
 ### Subcarpeta:
 
 - **`downloads/`**: Contiene los archivos ZIP comprimidos de las bases de datos y configuraciones:
-  - `budget-mcp-db.zip` (838MB)
-  - `documents-app-db.zip` (71MB)
-  - `message-app-db.zip` (14MB)
+  - `chat-app-db.zip` (6.9MB)
+  - `documents-app-db.zip` (68MB)
+  - `procurement-mcp-db.zip` (826MB)
+  - `db-qdrant.zip` (73MB)
   - `nginx-files.zip` (1.4GB)
-  - `qdrant.zip` (73MB)
 
 ## 🔄 Flujo de trabajo típico
 
