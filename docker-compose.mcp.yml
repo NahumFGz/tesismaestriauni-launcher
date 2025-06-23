@@ -1,11 +1,9 @@
-version: '3'
-
-networks:
-  microservices-network:
-    name: microservices-network
+version: "3"
 
 services:
   mcp-attendance:
+    depends_on:
+      - db-qdrant
     build: ./mcp-attendance
     command: python main.py
     ports:
@@ -14,12 +12,12 @@ services:
       - ./mcp-attendance:/app
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - QDRANT_HOST=qdrant
-      - QDRANT_PORT=6333
-    networks:
-      - microservices-network
+      - QDRANT_HOST=${QDRANT_HOST:-db-qdrant}
+      - QDRANT_PORT=${QDRANT_PORT:-6333}
 
   mcp-voting:
+    depends_on:
+      - db-qdrant
     build: ./mcp-voting
     command: python main.py
     ports:
@@ -28,52 +26,46 @@ services:
       - ./mcp-voting:/app
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - QDRANT_HOST=qdrant
-      - QDRANT_PORT=6333
-    networks:
-      - microservices-network
+      - QDRANT_HOST=${QDRANT_HOST:-db-qdrant}
+      - QDRANT_PORT=${QDRANT_PORT:-6333}
 
-  mcp-budget:
-    build: ./mcp-budget
+  mcp-procurement:
+    depends_on:
+      - db-procurement
+    build: ./mcp-procurement
     command: python main.py
     ports:
-      - ${MCP_HOST_BUDGET_PORT:-8002}:8000
+      - ${MCP_HOST_PROCUREMENT_PORT:-8002}:8000
     volumes:
-      - ./mcp-budget:/app
+      - ./mcp-procurement:/app
     environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - POSTGRES_HOST=${DB_BUDGET_HOST:-db-budget}
-      - POSTGRES_PORT=${DB_BUDGET_PORT:-5432}
-      - POSTGRES_DB=${DB_BUDGET_NAME:-budget-mcp-db}
-      - POSTGRES_USER=${DB_BUDGET_USERNAME:-postgres}
-      - POSTGRES_PASSWORD=${DB_BUDGET_PASSWORD:-123456}
-    networks:
-      - microservices-network
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - POSTGRES_HOST=${DB_PROCUREMENT_HOST:-db-procurement}
+      - POSTGRES_PORT=${DB_PROCUREMENT_PORT:-5432}
+      - POSTGRES_DB=${DB_PROCUREMENT_NAME:-procurement-mcp-db}
+      - POSTGRES_USER=${DB_PROCUREMENT_USERNAME:-postgres}
+      - POSTGRES_PASSWORD=${DB_PROCUREMENT_PASSWORD:-123456}
 
-  qdrant:
+  db-qdrant:
     image: qdrant/qdrant:v1.14.0
     restart: always
-    container_name: qdrant
+    container_name: db-qdrant
     ports:
-      - 6333:6333   # API REST
-      - 6334:6334   # gRPC (opcional)
+      - ${QDRANT_PORT:-6333}:6333 # API REST
+      - ${QDRANT_PORT:-6334}:6334 # gRPC (opcional)
     volumes:
-      - ./others/qdrant/storage:/qdrant/storage
-    networks:
-      - microservices-network
+      - ./others/data/db-qdrant/storage:/qdrant/storage
 
-  db-budget:
-    container_name: db-budget
+  db-procurement:
+    container_name: db-procurement
     image: postgres:16.2
     restart: always
     volumes:
-      - ./others/budget-mcp-db/postgres:/var/lib/postgresql/data
-      - ./others/budget-mcp-db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./others/data/procurement-mcp-db/postgres:/var/lib/postgresql/data
+      - ./others/data/procurement-mcp-db/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - 5632:5432
+      - ${DB_PROCUREMENT_PORT:-5632}:5432
     environment:
-      - POSTGRES_DB=${DB_BUDGET_NAME:-budget-mcp-db}
-      - POSTGRES_USER=${DB_BUDGET_USERNAME:-postgres}
-      - POSTGRES_PASSWORD=${DB_BUDGET_PASSWORD:-123456}
-    networks:
-      - microservices-network
+      - POSTGRES_DB=${DB_PROCUREMENT_NAME:-procurement-mcp-db}
+      - POSTGRES_USER=${DB_PROCUREMENT_USERNAME:-postgres}
+      - POSTGRES_PASSWORD=${DB_PROCUREMENT_PASSWORD:-123456}
