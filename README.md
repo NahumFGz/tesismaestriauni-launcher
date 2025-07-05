@@ -51,8 +51,11 @@ Para ejecutar correctamente el entorno, se requiere configurar las siguientes **
 
 ### 🧪 Entrenamiento y evaluación
 
+- **`train-main-llm/`**  
+  Sistema principal de agente conversacional LLM para transparencia gubernamental del Estado peruano, con capacidades de consulta sobre votaciones, asistencias de congresistas, contrataciones públicas y búsqueda web. Incluye un sistema completo de validación y evaluación con múltiples métricas (RAGAS, LLM Score, métricas personalizadas).
+
 - **`train-attendance/`**, **`train-voting/`**, **`train-procurement/`**  
-  Contienen notebooks Jupyter, scripts Python y configuraciones de entrenamiento y evaluación para cada agente. Incluyen experimentos con métricas como `Recall@k`, `MRR`, `BERTScore`, `SAS`, etc. Utilizan Poetry para gestión de dependencias.
+  Contienen notebooks Jupyter, scripts Python y configuraciones de entrenamiento y evaluación para cada agente específico. Incluyen experimentos con métricas como `Recall@k`, `MRR`, `BERTScore`, `SAS`, etc. Utilizan Poetry para gestión de dependencias.
 
 ---
 
@@ -61,12 +64,12 @@ Para ejecutar correctamente el entorno, se requiere configurar las siguientes **
 - **`publicdata-scraper/`**  
   Scrapers desarrollados en Python para portales como OSCE, SUNAT, MEF, Congreso de la República, Portal de Transparencia, entre otros. Incluye:
 
-  - `a_asistencia_votaciones/`: Extracción de datos de asistencias y votaciones del Congreso
-  - `b_diario_debates/`: Scraping del diario de debates
-  - `c_el_peruano/`: Extracción de documentos del Diario Oficial El Peruano
-  - `d_transparencia/`: Datos del Portal de Transparencia
-  - `e_sunat/`: Información de RUCs de SUNAT
-  - `f_osce/`: Datos de contrataciones públicas de OSCE
+  - `a_transparencia/`: Datos del Portal de Transparencia
+  - `b_osce/`: Datos de contrataciones públicas de OSCE
+  - `c_sunat/`: Información de RUCs de SUNAT
+  - `d_asistencia_votaciones/`: Extracción de datos de asistencias y votaciones del Congreso
+  - `e_diario_debates/`: Scraping del diario de debates
+  - `f_el_peruano/`: Extracción de documentos del Diario Oficial El Peruano
 
 - **`publicdata-classifier/`**  
   Clasificadores desarrollados en PyTorch que identifican documentos relevantes (asistencias, votaciones, contratos) a partir de texto OCR o metadatos. Incluye experimentos con diferentes arquitecturas (DenseNet, EfficientNet, MobileNet, ResNet, VGG).
