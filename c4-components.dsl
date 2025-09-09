@@ -133,7 +133,7 @@ workspace "Government Transparency - Components" "C4 - Component Diagram per Con
 
   container system "containers-backend" {
     include *
-    autoLayout lr
+    autoLayout tb
   }
 
   container web_client "containers-web-frontend" {
@@ -177,17 +177,52 @@ workspace "Government Transparency - Components" "C4 - Component Diagram per Con
   }
 
   styles {
+    element "Person" {
+      background #1168bd
+      color #ffffff
+      shape Person
+    }
+    element "External" {
+      background #999999
+      color #ffffff
+    }
     element "Container" {
+      background #85bbf0
+      color #ffffff
       shape RoundedBox
     }
     element "Component" {
+      background #52b788
+      color #ffffff
       shape Component
     }
     element "Database" {
+      background #023047
+      color #ffffff
+      shape Cylinder
+    }
+    element "VectorDatabase" {
+      background #8ecae6
+      color #000000
       shape Cylinder
     }
     element "MessageBroker" {
+      background #ff9500
+      color #ffffff
       shape Pipe
+    }
+    element "Web" {
+      background #1168bd
+      color #ffffff
+      shape WebBrowser
+    }
+    element "Service" {
+      background #85bbf0
+      color #ffffff
+    }
+    element "Agent" {
+      background #52b788
+      color #ffffff
     }
   }
 }
