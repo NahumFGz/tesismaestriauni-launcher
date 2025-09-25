@@ -1,57 +1,57 @@
-workspace "Government Transparency System" "Conversational AI system for government transparency data" {
+workspace "Sistema de Transparencia Gubernamental" "Sistema de IA conversacional para datos de transparencia gubernamental" {
 
     model {
         # External actors
-        user = person "End User" "Citizens querying government data" "User"
-        llmAPI = softwareSystem "LLM API" "OpenAI GPT models and embeddings service" "External"
+        user = person "Usuario Final" "Ciudadanos consultando datos gubernamentales" "User"
+        llmAPI = softwareSystem "API LLM" "Servicio de modelos GPT de OpenAI y embeddings" "External"
 
         # Main system
-        transparencySystem = softwareSystem "Government Transparency System" "AI-powered conversational platform for government data queries" {
+        transparencySystem = softwareSystem "Sistema de Transparencia Gubernamental" "Plataforma conversacional impulsada por IA para consultas de datos gubernamentales" {
             
             # User interface
-            webApp = container "Web Application" "Conversational interface" "React" "Web"
+            webApp = container "Aplicación Web" "Interfaz conversacional" "React" "Web"
             
             # Core orchestration
-            orchestrator = container "AI Orchestrator" "Coordinates specialized agents and manages conversations" "Python + LangGraph" "Service"
+            orchestrator = container "Orquestador de IA" "Coordina agentes especializados y gestiona conversaciones" "Python + LangGraph" "Service"
             
             # Specialized agents
-            ragAgents = container "RAG Agents" "Attendance and voting query agents with vector search" "Python + RAG" "Agent"
+            ragAgents = container "Agentes RAG" "Agentes de consulta de asistencia y votación con búsqueda vectorial" "Python + RAG" "Agent"
             
-            sqlAgent = container "SQL Agent" "Procurement data query agent" "Python + SQL" "Agent"
+            sqlAgent = container "Agente SQL" "Agente de consulta de datos de adquisiciones" "Python + SQL" "Agent"
             
             # Data layer
-            vectorDB = container "Vector Database" "Embeddings for attendance and voting data" "Qdrant" "VectorDatabase"
+            vectorDB = container "Base de Datos Vectorial" "Embeddings para datos de asistencia y votación" "Qdrant" "VectorDatabase"
             
-            relationalDB = container "Relational Database" "Procurement data and chat history" "PostgreSQL" "Database"
+            relationalDB = container "Base de Datos Relacional" "Datos de adquisiciones e historial de chat" "PostgreSQL" "Database"
         }
 
         # User interactions
-        user -> webApp "Natural language queries" "HTTPS"
+        user -> webApp "Consultas en lenguaje natural" "HTTPS"
         
         # Core system flow
-        webApp -> orchestrator "Query processing and response generation" "HTTP"
+        webApp -> orchestrator "Procesamiento de consultas y generación de respuestas" "HTTP"
         
         # Agent coordination
-        orchestrator -> ragAgents "Attendance and voting queries" "MCP"
-        orchestrator -> sqlAgent "Procurement queries" "MCP"
+        orchestrator -> ragAgents "Consultas de asistencia y votación" "MCP"
+        orchestrator -> sqlAgent "Consultas de adquisiciones" "MCP"
         
         # Data access
-        ragAgents -> vectorDB "Semantic search" "HTTP"
-        sqlAgent -> relationalDB "SQL queries" "SQL"
-        orchestrator -> relationalDB "Chat persistence" "SQL"
+        ragAgents -> vectorDB "Búsqueda semántica" "HTTP"
+        sqlAgent -> relationalDB "Consultas SQL" "SQL"
+        orchestrator -> relationalDB "Persistencia de chat" "SQL"
         
         # LLM integration
-        ragAgents -> llmAPI "Embeddings and generation" "HTTPS"
-        sqlAgent -> llmAPI "Query understanding" "HTTPS"
-        orchestrator -> llmAPI "Response synthesis" "HTTPS"
+        ragAgents -> llmAPI "Embeddings y generación" "HTTPS"
+        sqlAgent -> llmAPI "Comprensión de consultas" "HTTPS"
+        orchestrator -> llmAPI "Síntesis de respuestas" "HTTPS"
     }
 
     views {
-        container transparencySystem "Government_Transparency_System" {
+        container transparencySystem "Sistema_de_Transparencia_Gubernamental" {
             include *
             autoLayout tb
-            title "Government Transparency System"
-            description "AI-powered conversational system for querying government transparency data"
+            title "Sistema de Transparencia Gubernamental"
+            description "Sistema conversacional impulsado por IA para consultar datos de transparencia gubernamental"
         }
 
         styles {
