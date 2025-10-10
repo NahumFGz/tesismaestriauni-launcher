@@ -20,6 +20,10 @@ Para ejecutar correctamente el entorno, se requiere configurar las siguientes **
 
 > **Nota:** Existe un archivo `.env.template` en el proyecto que contiene todas las variables de entorno disponibles. Para un inicio rápido, crea tu propio archivo `.env` con las variables mínimas mostradas arriba. Para una configuración más avanzada, consulta el archivo `.env.template` que incluye variables adicionales para personalización del sistema.
 
+## ✅ Datasets y Backups de DBs
+
+- https://drive.google.com/drive/u/1/folders/1p_Mf37CFEkYA536y2dKS2MXGsvHcaj4p
+
 ---
 
 ## 🗂️ Estructura del Proyecto
