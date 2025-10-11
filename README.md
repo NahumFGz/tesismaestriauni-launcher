@@ -22,9 +22,10 @@ Para ejecutar correctamente el entorno, se requiere configurar las siguientes **
 
 ## ✅ Datasets y Backups de DBs
 
-- https://drive.google.com/drive/u/1/folders/1p_Mf37CFEkYA536y2dKS2MXGsvHcaj4p
-
----
+- proyecto: https://drive.google.com/drive/u/1/folders/1p_Mf37CFEkYA536y2dKS2MXGsvHcaj4p
+- publicdata-classifier: https://drive.google.com/drive/u/1/folders/1T04PjTvpjOtuD75rRw7FfdxC62i4kfy0
+- publicdata-scrapper: https://drive.google.com/drive/u/1/folders/1zv0lGqjIkYyg4c6yQ1V6mo_OhTTWmfQS
+- publicdata-yolo-ocr: https://drive.google.com/drive/u/1/folders/1xS1hI8JhMCwAIEHT1rgKdTfJPrKZxwkx
 
 ## 🗂️ Estructura del Proyecto
 
