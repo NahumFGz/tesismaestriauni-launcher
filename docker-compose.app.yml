@@ -4,8 +4,8 @@ services:
   nats-server:
     image: nats:2.11.4
     ports:
-      - 8222:8222
-      - 4222:4222
+      - ${NATS_HTTP_MONITOR_PORT:-8222}:8222
+      - ${NATS_CLIENT_PORT:-4222}:4222
 
   ms-gateway:
     build: ./ms-gateway
@@ -27,7 +27,7 @@ services:
     environment:
       - PORT=${DOCUMENTS_PORT:-3001}
       - NATS_SERVERS=${NATS_SERVERS:-nats://nats-server:4222}
-      - POSTGRES_URL=${POSTGRES_URL:-postgresql://postgres:123456@db-documents:5432/documents-app-db}
+      - POSTGRES_URL=${POSTGRES_URL:-postgresql://postgres:123456@db-documents:${DB_DOCUMENTS_INTERNAL_PORT:-5432}/documents-app-db}
 
   ms-chats:
     depends_on:
@@ -52,7 +52,7 @@ services:
       - DB_USERNAME=${DB_CHATS_USERNAME:-postgres}
       - DB_PASSWORD=${DB_CHATS_PASSWORD:-123456}
       - DB_HOST=${DB_CHATS_HOST:-db-chats}
-      - DB_PORT=${DB_CHATS_PORT:-5432}
+      - DB_PORT=${DB_CHATS_INTERNAL_PORT:-5432}
       - MCP_ATTENDANCE_URL=${MCP_ATTENDANCE_URL:-http://mcp-attendance:8000/mcp}
       - MCP_VOTING_URL=${MCP_VOTING_URL:-http://mcp-voting:8000/mcp}
       - MCP_PROCUREMENT_URL=${MCP_PROCUREMENT_URL:-http://mcp-procurement:8000/mcp}
@@ -88,7 +88,7 @@ services:
   mcp-static-server:
     image: nginx:1.25.3-alpine
     ports:
-      - 8080:80
+      - ${MCP_STATIC_HOST_PORT:-8080}:80
     volumes:
       - ./others/data/nginx-files:/usr/share/nginx/html:ro
       - ./others/data/nginx-files/default.conf:/etc/nginx/conf.d/default.conf:ro
