@@ -1,0 +1,62 @@
+graph TD
+    Frontend["<b>Web en React</b><br/>[Sistema de Software]<br/>Web Page en React"]
+
+    subgraph Plataforma ["Plataforma de Transparencia Gubernamental [Sistema de Software]"]
+        Gateway["<b>MS Gateway</b><br/>[Contenedor: NestJS, Socket.IO, NATS]<br/>API Gateway y entrada WebSocket;<br/>enruta vía NATS"]
+        
+        NATS["<b>NATS</b><br/>[Contenedor: NATS]<br/>Broker de mensajes para<br/>petición/respuesta y streaming"]
+
+        MSDoc["<b>MS Documentos</b><br/>[Contenedor: NestJS, Prisma]<br/>Gestión y consulta de<br/>documentos OCR"]
+        
+        MSChat["<b>MS Chats</b><br/>[Contenedor: Python, FastAPI, LangGraph]<br/>Orquesta agentes MCP<br/>y gestiona conversaciones"]
+
+        DBDoc[("<b>BD Documentos</b><br/>[Contenedor: PostgreSQL]<br/>Base de datos de metadatos<br/>y documentos OCR")]
+
+        MCPAtt["<b>MCP Asistencia</b><br/>[Contenedor: FastMCP, LangGraph, OpenAI]<br/>Agente RAG para asistencias"]
+        DBChat[("<b>BD Chats</b><br/>[Contenedor: PostgreSQL]<br/>Base de datos de conversaciones")]
+        MCPVote["<b>MCP Votación</b><br/>[Contenedor: FastMCP, LangGraph, OpenAI]<br/>Agente RAG para votación parlamentaria"]
+        MCPProc["<b>MCP Contrataciones</b><br/>[Contenedor: FastMCP, LangGraph, Claude]<br/>Agente SQL para contrataciones públicas"]
+
+        QAtt[("<b>Qdrant (Asistencia)</b><br/>[Contenedor: Qdrant]<br/>Base de datos vectorial<br/>para asistencia")]
+        QVote[("<b>Qdrant (Votación)</b><br/>[Contenedor: Qdrant]<br/>Base de datos vectorial<br/>para votación")]
+        DBProc[("<b>BD Contrataciones</b><br/>[Contenedor: PostgreSQL]<br/>Base de datos de<br/>contrataciones públicas")]
+    end
+
+    OpenAI["<b>OpenAI</b><br/>[Sistema de Software]<br/>APIs de LLM y embeddings"]
+
+    %% Conexiones
+    Frontend -. "WS /chats<br/>(streaming)<br/>[Socket.IO]" .-> Gateway
+    Gateway -. "Usa broker<br/>[NATS]" .-> NATS
+
+    NATS -. "Petición/Respuesta para<br/>documentos [NATS]" .-> MSDoc
+    NATS -. "Petición/Respuesta para<br/>chat [NATS]" .-> MSChat
+
+    MSDoc -. "Consultas/CRUD<br/>[SQL]" .-> DBDoc
+
+    MSChat -. "Llamada a herramientas<br/>(asistencia) [HTTP (MCP)]" .-> MCPAtt
+    MSChat -. "CRUD de<br/>conversaciones [SQL]" .-> DBChat
+    MSChat -. "Llamada a herramientas<br/>(votación) [HTTP (MCP)]" .-> MCPVote
+    MSChat -. "Llamada a herramientas<br/>(contrataciones) [HTTP (MCP)]" .-> MCPProc
+    MSChat -. "Llamadas LLM<br/>(generación/asistencia) [HTTPS]" .-> OpenAI
+
+    MCPAtt -. "Usa BD vectorial<br/>dedicada" .-> QAtt
+    MCPAtt -. "Embeddings y llamadas<br/>LLM [HTTPS]" .-> OpenAI
+
+    MCPVote -. "Usa BD vectorial<br/>dedicada" .-> QVote
+    MCPVote -. "Embeddings y llamadas<br/>LLM [HTTPS]" .-> OpenAI
+
+    MCPProc -. "Ejecuta SQL<br/>[SQL]" .-> DBProc
+    MCPProc -. "Llamadas LLM (generación/<br/>validación de SQL) [HTTPS]" .-> OpenAI
+
+    %% Estilos de colores basados en la imagen
+    classDef ext fill:#E0E0E0,stroke:#9E9E9E,color:black;
+    classDef ms fill:#82B1FF,stroke:#448AFF,color:white;
+    classDef nats fill:#FF9800,stroke:#F57C00,color:white;
+    classDef db fill:#001F3F,stroke:#001F3F,color:white;
+    classDef boundary fill:none,stroke:#B0BEC5,stroke-width:2px,color:#78909C,stroke-dasharray: 5 5;
+
+    class Frontend,OpenAI ext;
+    class Gateway,MSDoc,MSChat,MCPAtt,MCPVote,MCPProc ms;
+    class NATS nats;
+    class DBDoc,DBChat,QAtt,QVote,DBProc db;
+    class Plataforma boundary;
