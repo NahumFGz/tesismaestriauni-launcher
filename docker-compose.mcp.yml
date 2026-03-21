@@ -13,7 +13,7 @@ services:
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - QDRANT_HOST=${QDRANT_HOST:-db-qdrant}
-      - QDRANT_PORT=${QDRANT_INTERNAL_PORT:-6333}
+      - QDRANT_PORT=6333
 
   mcp-voting:
     depends_on:
@@ -27,7 +27,7 @@ services:
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - QDRANT_HOST=${QDRANT_HOST:-db-qdrant}
-      - QDRANT_PORT=${QDRANT_INTERNAL_PORT:-6333}
+      - QDRANT_PORT=6333
 
   mcp-procurement:
     depends_on:
@@ -51,7 +51,7 @@ services:
     restart: always
     container_name: db-qdrant
     ports:
-      - ${QDRANT_HOST_PORT:-${QDRANT_PORT:-6333}}:6333
+      - ${QDRANT_PORT:-6333}:6333
       - ${QDRANT_GRPC_HOST_PORT:-6334}:6334
     volumes:
       - ./others/data/db-qdrant/storage:/qdrant/storage
