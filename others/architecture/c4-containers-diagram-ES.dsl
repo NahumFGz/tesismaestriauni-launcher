@@ -1,98 +1,59 @@
-workspace "Sistema de Transparencia Gubernamental" "Sistema de IA conversacional para datos de transparencia gubernamental" {
+workspace "Sistema de Transparencia Gubernamental" "Diagrama de arquitectura del sistema de consultas ciudadanas." {
 
     model {
-        # External actors
-        user = person "Usuario Final" "Ciudadanos consultando datos gubernamentales" "User"
-        llmAPI = softwareSystem "API LLM" "Servicio de modelos GPT de OpenAI y embeddings" "External"
-
-        # Main system
-        transparencySystem = softwareSystem "Sistema de Transparencia Gubernamental" "Plataforma conversacional impulsada por IA para consultas de datos gubernamentales" {
-            
-            # User interface
-            webApp = container "Aplicación Web" "Interfaz conversacional" "React" "Web"
-            
-            # Core orchestration
-            orchestrator = container "Orquestador de IA" "Coordina agentes especializados y gestiona conversaciones" "Python + LangGraph" "Service"
-            
-            # Specialized agents
-            ragAgents = container "Agentes RAG" "Agentes de consulta de asistencia y votación con búsqueda vectorial" "Python + RAG" "Agent"
-            
-            sqlAgent = container "Agente SQL" "Agente de consulta de datos de adquisiciones" "Python + SQL" "Agent"
-            
-            # Data layer
-            vectorDB = container "Base de Datos Vectorial" "Embeddings para datos de asistencia y votación" "Qdrant" "VectorDatabase"
-            
-            relationalDB = container "Base de Datos Relacional" "Datos de adquisiciones e historial de chat" "PostgreSQL" "Database"
+        user = person "Usuario Final" "Ciudadanos consultando datos del gobierno." "Persona"
+        
+        llm = softwareSystem "API de LLM" "Modelos GPT de OpenAI y servicio de embeddings." "Sistema Externo"
+        
+        govSystem = softwareSystem "Sistema de Transparencia Gubernamental" "Plataforma principal para la transparencia." {
+            webApp = container "Aplicación Web" "Interfaz conversacional." "React" "Web Browser"
+            orchestrator = container "Orquestador de IA" "Coordina agentes especializados y gestiona conversaciones." "Python + LangGraph"
+            ragAgents = container "Agentes RAG" "Agentes de consulta de asistencia y votación con búsqueda vectorial." "Python + RAG"
+            sqlAgent = container "Agente SQL" "Agente de consulta de datos de contrataciones." "Python + SQL"
+            relationalDb = container "Base de Datos Relacional" "Datos de contrataciones e historial de chat." "PostgreSQL" "Database"
+            vectorDb = container "Base de Datos Vectorial" "Embeddings para datos de asistencia y votación." "Qdrant" "Database"
         }
 
-        # User interactions
+        # Relaciones
         user -> webApp "Consultas en lenguaje natural" "HTTPS"
-        
-        # Core system flow
         webApp -> orchestrator "Procesamiento de consultas y generación de respuestas" "HTTP"
         
-        # Agent coordination
         orchestrator -> ragAgents "Consultas de asistencia y votación" "MCP"
-        orchestrator -> sqlAgent "Consultas de adquisiciones" "MCP"
+        orchestrator -> sqlAgent "Consultas de contrataciones" "MCP"
+        orchestrator -> relationalDb "Persistencia de chat" "SQL"
+        orchestrator -> llm "Comprensión de consultas y Síntesis de respuestas" "HTTPS"
         
-        # Data access
-        ragAgents -> vectorDB "Búsqueda semántica" "HTTP"
-        sqlAgent -> relationalDB "Consultas SQL" "SQL"
-        orchestrator -> relationalDB "Persistencia de chat" "SQL"
+        ragAgents -> vectorDb "Búsqueda semántica" "HTTP"
+        ragAgents -> llm "Embeddings y generación" "HTTPS"
         
-        # LLM integration
-        ragAgents -> llmAPI "Embeddings y generación" "HTTPS"
-        sqlAgent -> llmAPI "Comprensión de consultas" "HTTPS"
-        orchestrator -> llmAPI "Síntesis de respuestas" "HTTPS"
+        sqlAgent -> relationalDb "Consultas SQL" "SQL"
     }
 
     views {
-        container transparencySystem "Sistema_de_Transparencia_Gubernamental" {
+        container govSystem "Contenedores_Sistema_Transparencia" {
             include *
             autoLayout tb
-            title "Sistema de Transparencia Gubernamental"
-            description "Sistema conversacional impulsado por IA para consultar datos de transparencia gubernamental"
         }
-
+        
         styles {
-            element "User" {
-                background #1168bd
+            element "Person" {
+                background #1565C0
                 color #ffffff
                 shape Person
             }
-            element "External" {
-                background #999999
+            element "Software System" {
+                background #9E9E9E
                 color #ffffff
             }
-            element "Web" {
-                background #1168bd
-                color #ffffff
-                shape WebBrowser
-            }
-            element "Service" {
-                background #85bbf0
-                color #ffffff
-            }
-            element "Agent" {
-                background #52b788
+            element "Container" {
+                background #1976D2
                 color #ffffff
             }
             element "Database" {
-                background #023047
+                shape Cylinder
+                background #001F3F
                 color #ffffff
-                shape Cylinder
-            }
-            element "VectorDatabase" {
-                background #8ecae6
-                color #000000
-                shape Cylinder
             }
         }
-
-        theme default
-    }
-
-    configuration {
-        scope softwaresystem
     }
 }
